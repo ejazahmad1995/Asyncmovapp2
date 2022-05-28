@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="common.css" />
+</head>
+<body>
+    <div id="navbar">
+        <div><a href="Index.html">Home</a></div>
+        <div><a href="Login.html">Login</a></div>
+        <div><a href="Signup.html">Signup</a></div>
+    </div>
+    <form id="form">
+        <h1>Login</h1>
+     <input placeholder="Enter your Email" id="Email" type="text" />
+     <input placeholder="Enter your Password" id="Password" type="text"/>
+     <input type="submit" id="Cont" value="Login"/>
+    </form>
+</body>
+</html>
+<script>
+    var userData=JSON.parse(localStorage.getItem("allUsers"));
+    document.querySelector("#form").addEventListener("submit",login)
+ 
+    function login(){
+        event.preventDefault();
+        var z=document.querySelector("#Email").value;
+        var m=document.querySelector("#Password").value;
+ 
+        if(!z || !m ){
+        alert("Please enter full Details !!")
+        return;
+    }
+    var findUser=userData.find(function(c){
+        return c.z==z && c.m==m;  
+    })
+      if(!findUser){
+            alert("Invalid Credentials")
+            return;
+    }
+    alert("Login Successfull")
+    window.location.href="Index.html";
+}
+</script>
